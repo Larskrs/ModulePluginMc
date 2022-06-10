@@ -1,0 +1,5 @@
+name: ModulePluginMC
+version: ${project.version}
+main: net.larskrs.plugins.modulepluginmc.ModulePluginMC
+api-version: 1.18
+authors: [ Larskrs ]

@@ -3,6 +3,7 @@ package net.larskrs.plugins.modulepluginmc.commands;
 import net.larskrs.plugins.modulepluginmc.api.bukkit.Command;
 import net.larskrs.plugins.modulepluginmc.api.module.Module;
 import net.larskrs.plugins.modulepluginmc.api.module.ModuleManager;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
@@ -23,7 +24,7 @@ public class ModulesCommand extends Command {
         if (args.length >= 1 && args[0].equalsIgnoreCase("list")) {
             listModules(sender);
         } if (args.length >= 1 && args[0].equalsIgnoreCase("disable")) {
-            disableModule(args[1]);
+            disableModule(args[1], sender);
         } if (args.length >= 1 && args[0].equalsIgnoreCase("enable")) {
             enableModule(args[1]);
         }
@@ -36,10 +37,13 @@ public class ModulesCommand extends Command {
         }
     }
 
-    private void disableModule(String arg) {
+    private void disableModule(String arg, CommandSender sender) {
         Module module = ModuleManager.getModule(arg);
         if (module != null) {
             ModuleManager.unloadModule(module);
+        } else {
+            sender.sendMessage("Could not find a module with the name: " + arg);
+            listModules(sender);
         }
     }
 
@@ -51,6 +55,7 @@ public class ModulesCommand extends Command {
              ) {
             sender.sendMessage(ChatColor.WHITE + " > " + (ModuleManager.isLoaded(m) ? ChatColor.GREEN + " [Enabled]" : ChatColor.RED + " [Disabled]") + " " + ChatColor.WHITE + m.name + ChatColor.YELLOW + " - Version ( "+ m.GetVersion() +" )");
         }
+        sender.sendMessage(" There are " + ModuleManager.getLoadedModules().size() + " loaded modules.");
     }
 
     @Override

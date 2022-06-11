@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 
 public class ModuleManager {
@@ -53,7 +54,7 @@ public class ModuleManager {
     public static Module getModule(String name) {
         for (Module m : modules
              ) {
-            if ( m.name == name ) {
+            if (Objects.equals(m.name, name)) {
                 return m;
             }
         }

@@ -32,6 +32,7 @@ public abstract class Command extends BukkitCommand {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + " Loaded Command : /" + command);
     }
     public Command(String command, String permission, String description, String usage) {
         super(command);

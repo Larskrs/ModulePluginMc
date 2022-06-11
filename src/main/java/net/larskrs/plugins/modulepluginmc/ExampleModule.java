@@ -22,7 +22,7 @@ public class ExampleModule extends Module {
 
     @Override
     public void onModuleUnload() {
-
+        Bukkit.getConsoleSender().sendMessage("Unloaded the example module.");
     }
 
     @Override

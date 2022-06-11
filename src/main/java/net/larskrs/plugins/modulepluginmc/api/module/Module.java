@@ -1,6 +1,7 @@
 package net.larskrs.plugins.modulepluginmc.api.module;
 
 import jdk.jfr.Description;
+import net.larskrs.plugins.modulepluginmc.ModulePluginMC;
 import org.bukkit.Bukkit;
 
 import java.util.logging.Level;

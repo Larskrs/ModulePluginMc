@@ -1,13 +1,14 @@
-package net.larskrs.plugins.modulepluginmc;
+package net.larskrs.plugins.modulepluginmc.modules.examplemodule;
 
+import net.larskrs.plugins.modulepluginmc.ModulePluginMC;
 import net.larskrs.plugins.modulepluginmc.api.bukkit.Command;
 import net.larskrs.plugins.modulepluginmc.api.module.Module;
+import net.larskrs.plugins.modulepluginmc.modules.undergroundmodule.undergroundCommand;
+import net.larskrs.plugins.modulepluginmc.modules.undergroundmodule.undergroundModuleListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
-import java.sql.Array;
 import java.util.List;
-import java.util.logging.Level;
 
 public class ExampleModule extends Module {
 
@@ -18,6 +19,9 @@ public class ExampleModule extends Module {
     @Override
     public void onModuleLoaded() {
         new ExampleCommand();
+        new undergroundCommand();
+        Bukkit.getConsoleSender().sendMessage("The max allowed height is: " +  ModulePluginMC.getInstance().getConfig().getDouble("underground.maxHeight"));
+        Bukkit.getPluginManager().registerEvents(new undergroundModuleListener(), ModulePluginMC.getInstance());
     }
 
     @Override

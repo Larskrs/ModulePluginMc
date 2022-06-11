@@ -1,0 +1,5 @@
+underground:
+  maxHeight: 60
+
+loadedmodules:
+  - Example

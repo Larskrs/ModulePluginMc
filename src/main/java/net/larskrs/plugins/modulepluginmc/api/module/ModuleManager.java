@@ -1,6 +1,8 @@
 package net.larskrs.plugins.modulepluginmc.api.module;
 
+import net.larskrs.plugins.modulepluginmc.Config;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +25,24 @@ public class ModuleManager {
         }
         modules.add(module);
     }
+
+    /**
+     * This loads all the modules previously loaded.
+     */
+    public static void LoadModules() {
+        for (Module m : Config.getLoadableModules()
+             ) {
+            loadModule(m);
+        }
+    }
     public static void loadModule(Module module) {
         if (!modules.contains(module)) {
             registerModule(module);
         }
         module.load();
         loadedModules.add(module);
-        System.out.println("loaded a module.");
+        Config.addLoadedModuleToFile(module);
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "Loaded the " + ChatColor.GREEN + module.getName());
     }
     public static void unloadModule(Module module) {
         if (!modules.contains(module)) {
@@ -37,7 +50,8 @@ public class ModuleManager {
         }
         module.unload();
         loadedModules.remove(module);
-        System.out.println("unloaded a module.");
+        Config.removeLoadedModuleToFile(module);
+        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Unoaded the " + ChatColor.GREEN + module.getName());
     }
 
     public static List<Module> getModules () {

@@ -3,6 +3,7 @@ package net.larskrs.plugins.modulepluginmc;
 import net.larskrs.plugins.modulepluginmc.api.module.ModuleManager;
 import net.larskrs.plugins.modulepluginmc.commands.ModulesCommand;
 import net.larskrs.plugins.modulepluginmc.modules.examplemodule.ExampleModule;
+import net.larskrs.plugins.modulepluginmc.modules.undergroundmodule.UndergroundModule;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ModulePluginMC extends JavaPlugin {
@@ -20,7 +21,10 @@ public final class ModulePluginMC extends JavaPlugin {
 
         ModuleManager.SetUp();
 
-        ModuleManager.loadModule(new ExampleModule());
+        ModuleManager.registerModule(new ExampleModule());
+        ModuleManager.registerModule(new UndergroundModule());
+
+        ModuleManager.LoadModules();
         new ModulesCommand();
     }
 

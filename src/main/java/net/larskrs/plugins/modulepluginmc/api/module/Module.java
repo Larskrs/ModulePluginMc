@@ -45,4 +45,7 @@ public abstract class Module {
         return version;
     }
 
+    public String getName() {
+        return name;
+    }
 }
